@@ -27,8 +27,8 @@ def current_time():
 def wifi_connect():
     # This function is used to establish wifi connection and synchronize the time using the network
     print("Connecting to WIFI")
-    WIFI_SSID = "Area51_DG_24"
-    WIFI_PW = "DaismeprWLKe$%&2108"
+    WIFI_SSID = #####
+    WIFI_PW = #####
 
     wlan = network.WLAN(network.STA_IF)
     if not wlan.isconnected():
