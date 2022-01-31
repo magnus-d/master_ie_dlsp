@@ -57,6 +57,7 @@ while True:
             accel_data.append(data_record[:3])
         index = index + 2
     print(accel_data)
+    print(timestamp)
     if len(accel_data) > 0:
         db.Test.insert_many([{'time': timestamp[i], 'Accel': accel_data[i]} for i in range(len(accel_data))])
     accel_data.clear()
