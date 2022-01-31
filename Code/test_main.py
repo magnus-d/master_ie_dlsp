@@ -59,8 +59,8 @@ sampling_rate = 10
 sensor_data = []
 sensor_data_2 = []
 DataCounter = 0
-TCP_IP = '10.128.15.39'
-TCP_PORT = 8000
+TCP_IP = #####
+TCP_PORT = #####
 BUFFER_SIZE = 15000
 
 i2c = I2C(scl=Pin(5), sda=Pin(4), freq=100000)
