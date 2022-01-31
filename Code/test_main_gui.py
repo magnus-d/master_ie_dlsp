@@ -27,8 +27,8 @@ timestamp = []
 client = MongoClient("localhost:27017")
 db = client.DLSP
 
-TCP_IP = '10.128.15.39'
-TCP_PORT = 8000
+TCP_IP = #####
+TCP_PORT = #####
 BUFFER_SIZE = 15000
 print("Trying to establish connection")
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
