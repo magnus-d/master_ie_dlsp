@@ -38,9 +38,6 @@ Zunächst wird der Socket erzeugt, gebunden und darauf gewartet, dass der Mikroc
 ## Visualisierung mithilfe eines Graphical-User-Interface
 Das Ziel dieses Programms ist die Visualisierung der aufgenommenen Daten und des diagnostizierten Programmstatus in einem Graphical-User-Interface. Das Programm besteht aus verschiedenen definierten Funktionen, die ineinander aufgerufen werden. Nach dem Start des Programms wird ein Diagramm der letzten 2.000 in der Datenbank enthaltenen Datensätze in einem Pop-Up-Fenster geladen, um den Nutzer genauere Einblicke in diese zu ermöglichen. Nachdem der Nutzer dieses Fenster geschlossen hat, lädt das Graphical-User-Interface. Dieses besteht aus zwei Tabs. Im ersten Tab (dem standardmäßig auftauchenden nach Programmstart) ist nur ein Dialogfenster zur Kommunikation wichtiger Statusmeldungen und Informationen sowie eine Visualisierung des aktuellen Programmstatus. Das zweite Tabs enthält zusätzlich tiefergehende Informationen. Es verfügt über eine Anzeige der letzten gemessenen Beschleunigungswerte und ein Diagramm zur Visualisierung der letzten 500 Datensätze der Beschleunigungsdaten. Im Dialogfenster werden zusätzlich zu den Informationen, die auch im ersten Tab eingeblendet werden, diagrammspezifische Informationen mit dem Nutzer geteilt. Somit hat der Nutzer selbst die Wahl, wie viel Informationsgehalt er haben möchte. Da die Anzeige des Graphical-User-Interface den Hauptthread, der über PyCharm erzeugt wird, vollständig beansprucht, wird für die restlichen Funktionen ein Nebenthread initialisiert, der durch eine While-Schleife durchgehend aufrechterhalten wird. Das Programm kann über den roten Programmstop-Button gestoppt werden. Das Fenster mit der Graphical-User-Interface muss allerdings manuell zusätzlich geschlossen werden.
 
-# Hinweise zur Verwendung der Programme
-Die Reihenfolge, in der die Programme gestartet werden, ist irrelevant. Alle Programme sind so geschrieben, dass sie auf die benötigten Daten der Schnittstellen warten, ohne in einen Fehler zu laufen. Unter Umständen kann es einige Sekunden dauern, bis das Graphical-User-Interface die Daten im Diagramm visualisiert.
-
 # Anwendung des maschinellen Lernens
 Bei der Anwendung des maschinellen Lernens wurden zunächst fünf Zustände klassifiziert und trainiert. 
 ![image](https://user-images.githubusercontent.com/85877515/154665437-f2ed70f2-fd84-4bab-8977-50c982d3769c.png)
@@ -48,3 +45,9 @@ Abbildung 2: Klassifizierungsergebnis mit fünf Zuständen
 Bei Betrachtung der Ergebnisse fällt auf, dass erhebliche Schwierigkeiten bei der Unterscheidung von Waschen und Vorwäsche auftreten. Zusätzlich ist das Spülen nicht gut klassifizierbar. Aus diesem Grund wurde entschieden, für die Umsetzung im Programm nur drei Zustände zu nutzen. Dies soll die Genauigkeit des Algorithmus erhöhen. Das Ergebnis der Anpassung zeigt diese Steigerung der Genauigkeit deutlich.
 ![image](https://user-images.githubusercontent.com/85877515/154665398-bfa6af3f-53a5-4e79-8676-a40d28301ba0.png)
 Abbildung 3: Klassifizierungsergebnis mit drei Zuständen
+
+# Hinweise zur Verwendung der Programme
+Die Reihenfolge, in der die Programme gestartet werden, ist irrelevant. Alle Programme sind so geschrieben, dass sie auf die benötigten Daten der Schnittstellen warten, ohne in einen Fehler zu laufen. Unter Umständen kann es einige Sekunden dauern, bis das Graphical-User-Interface die Daten im Diagramm visualisiert.
+
+# Hinweise zu diesem GitHub-Repository
+In diesem Repository befinden sich sämtliche verwendeten Codes (sensible Informationen sind geschwärzt und durch *** ersetzt). Zusätzlich sind alle Überlegungen, hintergründige Dateien und Analysen über Jupyter-Notebooks dokumentiert.
