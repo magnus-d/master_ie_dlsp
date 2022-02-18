@@ -26,13 +26,13 @@ Um die Problematik von fehlerhaften Abtastdaten durch Aliasing zu umgehen, muss 
 
 Formel 2: Berechnung der minimalen Abtastfrequenz
 
-f_(〖Abtast〗_min )= f_max [Hz]*2= 23,(33) ̅[Hz]*2 =46,(66) ̅  [Hz] 	Formel 2
+f_(〖Abtast〗_min )= f_max [Hz]*2= 23,(33) ̅[Hz]*2 =46,(66) ̅  [Hz] 
 
 Für das Projekt beträgt die minimale Abtastfrequenz 46,66 Hz. Um eine möglichst genaue Abtastung des Eingangssignals zu erreichen, wurde entschieden, mit einer Frequenz von 100 Hz abzutasten. 
 
 Formel 3: Berechnung des Verhältnisses der Abtastfrequenz zur Eingangsfrequenz
 
-Abtastverhältnis=(f_Abtast [Hz])/(f_max  [Hz] )=  (100 [Hz])/(23,(33) ̅  [Hz])=4,29 [#] 	Formel 3
+Abtastverhältnis=(f_Abtast [Hz])/(f_max  [Hz] )=  (100 [Hz])/(23,(33) ̅  [Hz])=4,29 [#] 
 
 Dadurch beträgt das Verhältnis von Abtastfrequenz zu Eingangsfrequenz 4,29. Der Aliasing-Effekt kann dadurch ausgeschlossen werden.
 
