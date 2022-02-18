@@ -8,7 +8,7 @@ Ziel ist es, dass die Studierenden sich mit den grundlegenden Aspekten der Proze
 
 # Prozessbeschreibung
 Das Projekt wird an einer Bosch-Waschmaschine des Modells XY durchgeführt (siehe Abbildung 1). Diese steht auf Gummimatten, die sie von dem Fliesenboden trennen und einen Teil der beim Waschen entstehenden Schwingungen dämpfen, da sie nicht vollends starr sind.
-
+![image](https://user-images.githubusercontent.com/85877515/154673480-616d134e-fdc0-444c-a40a-8cc613f93064.png)
 
 Abbildung 1: Verwendete Waschmaschine
 
