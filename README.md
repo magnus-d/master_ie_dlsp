@@ -14,17 +14,25 @@ Abbildung 1: Verwendete Waschmaschine
 
 Bei dem betrachteten Waschprozess handelt es sich um ein Programm mit einer Länge von 2 Stunden und 45 Minuten. Das Programm beinhaltet eine Vorwäsche, Schleudervorgänge, Einspülen von Wasser und einen langen Waschprozess. Ebenfalls sind zahlreiche Stillstände vorhanden, die einige Sekunden dauern. Daher sollen diese fünf Zustände im maschinellen Lernen erkannt werden. Die maximale Drehzahl der Waschmaschine beträgt 1400 min-1.
 Theoretische Grundlage der Datenerfassung
-Wie im vorangegangenen Kapitel erwähnt, beträgt die maximale Drehzahl der Waschmaschine 1400 min-1. 
+Wie im vorangegangenen Kapitel erwähnt, beträgt die maximale Drehzahl der Waschmaschine 1400 min-1.
+
 Formel 1: Berechnung der maximalen Drehfrequenz der Waschmaschine
-f_max=(n_max [1/min])/(60 [s/min] )=  (1400 [1/min])/(60 [s/min])=23,(33) ̅  [Hz] 	Formel 3 1
+
+f_max=(n_max [1/min])/(60 [s/min] )=  (1400 [1/min])/(60 [s/min])=23,(33) ̅  [Hz] 
+
 Die maximale Drehfrequenz des Waschprogramms beträgt dementsprechend 23,33 Hz.
 „Beim Prozess des Abtastens von Signalen kann es zum Aliasing kommen, wenn die Abtastrate kleiner als das Doppelte der höchsten Frequenz ist. Das Eingangssignal kann dann nicht mehr vollständig aus dem abgetasteten Signal rekonstruiert werden.“ [1]
 Um die Problematik von fehlerhaften Abtastdaten durch Aliasing zu umgehen, muss die Abtastfrequenz mindestens das doppelte der maximalen Drehfrequenz der Waschmaschine betragen. Es ist aber dennoch sinnvoll, die Abtastfrequenz höher als die doppelte Frequenz des Eingangssignals anzusetzen, da auch bei dem Verhältnis 2:1 (Abtastfrequenz zu Eingangsfrequenz) die Genauigkeit leiden kann.
+
 Formel 2: Berechnung der minimalen Abtastfrequenz
-f_(〖Abtast〗_min )= f_max [Hz]*2= 23,(33) ̅[Hz]*2 =46,(66) ̅  [Hz] 	Formel 3 2
+
+f_(〖Abtast〗_min )= f_max [Hz]*2= 23,(33) ̅[Hz]*2 =46,(66) ̅  [Hz] 	Formel 2
+
 Für das Projekt beträgt die minimale Abtastfrequenz 46,66 Hz. Um eine möglichst genaue Abtastung des Eingangssignals zu erreichen, wurde entschieden, mit einer Frequenz von 100 Hz abzutasten. 
+
 Formel 3: Berechnung des Verhältnisses der Abtastfrequenz zur Eingangsfrequenz
-Abtastverhältnis=(f_Abtast [Hz])/(f_max  [Hz] )=  (100 [Hz])/(23,(33) ̅  [Hz])=4,29 [#] 	Formel 3 3
+
+Abtastverhältnis=(f_Abtast [Hz])/(f_max  [Hz] )=  (100 [Hz])/(23,(33) ̅  [Hz])=4,29 [#] 	Formel 3
 
 Dadurch beträgt das Verhältnis von Abtastfrequenz zu Eingangsfrequenz 4,29. Der Aliasing-Effekt kann dadurch ausgeschlossen werden.
 
