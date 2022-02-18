@@ -9,6 +9,7 @@ Ziel ist es, dass die Studierenden sich mit den grundlegenden Aspekten der Proze
 # Prozessbeschreibung
 Das Projekt wird an einer Bosch-Waschmaschine des Modells XY durchgeführt (siehe Abbildung 1). Diese steht auf Gummimatten, die sie von dem Fliesenboden trennen und einen Teil der beim Waschen entstehenden Schwingungen dämpfen, da sie nicht vollends starr sind.
 
+
 Abbildung 1: Verwendete Waschmaschine
 Bei dem betrachteten Waschprozess handelt es sich um ein Programm mit einer Länge von 2 Stunden und 45 Minuten. Das Programm beinhaltet eine Vorwäsche, Schleudervorgänge, Einspülen von Wasser und einen langen Waschprozess. Ebenfalls sind zahlreiche Stillstände vorhanden, die einige Sekunden dauern. Daher sollen diese fünf Zustände im maschinellen Lernen erkannt werden. Die maximale Drehzahl der Waschmaschine beträgt 1400 min-1.
 Theoretische Grundlage der Datenerfassung
@@ -41,9 +42,11 @@ Das Ziel dieses Programms ist die Visualisierung der aufgenommenen Daten und des
 # Anwendung des maschinellen Lernens
 Bei der Anwendung des maschinellen Lernens wurden zunächst fünf Zustände klassifiziert und trainiert. 
 ![image](https://user-images.githubusercontent.com/85877515/154665437-f2ed70f2-fd84-4bab-8977-50c982d3769c.png)
+
 Abbildung 2: Klassifizierungsergebnis mit fünf Zuständen
 Bei Betrachtung der Ergebnisse fällt auf, dass erhebliche Schwierigkeiten bei der Unterscheidung von Waschen und Vorwäsche auftreten. Zusätzlich ist das Spülen nicht gut klassifizierbar. Aus diesem Grund wurde entschieden, für die Umsetzung im Programm nur drei Zustände zu nutzen. Dies soll die Genauigkeit des Algorithmus erhöhen. Das Ergebnis der Anpassung zeigt diese Steigerung der Genauigkeit deutlich.
 ![image](https://user-images.githubusercontent.com/85877515/154665398-bfa6af3f-53a5-4e79-8676-a40d28301ba0.png)
+
 Abbildung 3: Klassifizierungsergebnis mit drei Zuständen
 
 # Hinweise zur Verwendung der Programme
