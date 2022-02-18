@@ -11,6 +11,7 @@ Das Projekt wird an einer Bosch-Waschmaschine des Modells XY durchgeführt (sieh
 
 
 Abbildung 1: Verwendete Waschmaschine
+
 Bei dem betrachteten Waschprozess handelt es sich um ein Programm mit einer Länge von 2 Stunden und 45 Minuten. Das Programm beinhaltet eine Vorwäsche, Schleudervorgänge, Einspülen von Wasser und einen langen Waschprozess. Ebenfalls sind zahlreiche Stillstände vorhanden, die einige Sekunden dauern. Daher sollen diese fünf Zustände im maschinellen Lernen erkannt werden. Die maximale Drehzahl der Waschmaschine beträgt 1400 min-1.
 Theoretische Grundlage der Datenerfassung
 Wie im vorangegangenen Kapitel erwähnt, beträgt die maximale Drehzahl der Waschmaschine 1400 min-1. 
@@ -26,7 +27,8 @@ Formel 3: Berechnung des Verhältnisses der Abtastfrequenz zur Eingangsfrequenz
 Abtastverhältnis=(f_Abtast [Hz])/(f_max  [Hz] )=  (100 [Hz])/(23,(33) ̅  [Hz])=4,29 [#] 	Formel 3 3
 
 Dadurch beträgt das Verhältnis von Abtastfrequenz zu Eingangsfrequenz 4,29. Der Aliasing-Effekt kann dadurch ausgeschlossen werden.
-Main-Programm des Mikrocontrollers
+
+# Main-Programm des Mikrocontrollers
 Im Main-Programm, das auf dem Mikrocontroller läuft, wird zunächst eine Print-Ausgabe der aktuell auf dem Mikrocontroller geflashten Dateien für eine möglicherweise verbundene REPL erzeugt. Dies soll dem Verwender die Möglichkeit geben, jederzeit einsehen zu können, dass nur die Dateien geflasht sind, die benötigt werden. Anschließend verbindet sich der Mikrocontroller mit dem WLAN und synchronisiert die aktuelle Zeit aus dem Netzwerk. Nachdem die WLAN-Verbindung hergestellt wurde, wird der I2C-Bus initialisiert, mit dem der MPU6050-Sensor angesprochen werden kann. Der Befehl für das Auslesen der Beschleunigungsdaten wird auch bereits in der Initialisierung der Variablen und Funktionen adressiert. Anschließend im Rahmen einer While-Schleife mithilfe einer Try-&Except-Funktion darauf gewartet, dass im Try-Teil eine TCP-Verbindung mit der Server-Seite hergestellt wird. Der Mikrocontroller ist in diesem Fall die Client-Seite der TCP-Kommunikation. Wenn die Verbindung steht, wird ein Timer initialisiert, dessen Callback-Funktion mit der zuvor definierten Abtastfrequenz eine vordefinierte Funktion aufruft. In dieser Funktion zählt ein Datacounter die Anzahl der Durchläufe. Wenn der Datacounter den Wert 200 erreicht hat, wird er auf den Wert 0 zurückgesetzt. Wenn er den Wert 0 hat, wird ein Zeitstempel mit der aktuellen Zeit via TCP gesendet. Bei jedem Aufruf der Funktion wird unabhängig vom Datacounter der aktuelle Beschleunigungswert in allen drei Achsen ermittelt, direkt auf 5 Nachkommastellen formatiert und ebenfalls via TCP übermittelt. Sämtliche über TCP gesendeten Daten werden vor dem Senden als String formatiert und verschlüsselt. Das Programm ist so konzipiert, dass es über die Try-&Except-Funktion automatisch stoppt, wenn die TCP-Verbindung von der Server-Seite terminiert wird.
 
 # Programme über PyCharm
@@ -44,6 +46,7 @@ Bei der Anwendung des maschinellen Lernens wurden zunächst fünf Zustände klas
 ![image](https://user-images.githubusercontent.com/85877515/154665437-f2ed70f2-fd84-4bab-8977-50c982d3769c.png)
 
 Abbildung 2: Klassifizierungsergebnis mit fünf Zuständen
+
 Bei Betrachtung der Ergebnisse fällt auf, dass erhebliche Schwierigkeiten bei der Unterscheidung von Waschen und Vorwäsche auftreten. Zusätzlich ist das Spülen nicht gut klassifizierbar. Aus diesem Grund wurde entschieden, für die Umsetzung im Programm nur drei Zustände zu nutzen. Dies soll die Genauigkeit des Algorithmus erhöhen. Das Ergebnis der Anpassung zeigt diese Steigerung der Genauigkeit deutlich.
 ![image](https://user-images.githubusercontent.com/85877515/154665398-bfa6af3f-53a5-4e79-8676-a40d28301ba0.png)
 
