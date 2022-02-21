@@ -2,7 +2,7 @@
 Dies ist das Projekt im Mastermodul Datenmanagement und Leittechnik
 
 # Hinweise zu diesem GitHub-Repository
-In diesem Repository befinden sich sämtliche verwendeten Codes (sensible Informationen sind geschwärzt und durch *** ersetzt). Zusätzlich sind alle Überlegungen, hintergründige Dateien und Analysen über Jupyter-Notebooks dokumentiert. Alle Inhalte des Repository sind als Anhänge der Abgabe anzusehen
+In diesem Repository befinden sich sämtliche verwendeten Codes (sensible Informationen sind geschwärzt und durch *** ersetzt). Zusätzlich sind alle Überlegungen, hintergründige Dateien und Analysen über Jupyter-Notebooks dokumentiert. Alle Inhalte des Repository sind als Anhänge der Abgabe anzusehen. Der Ordner "ausführbarer ZIP-Ordner" enthält alle Programme, damit diese mit einer MongoDB über localhost geprüft werden können. Von einer Einbindung in die cloudbasierte DB wird abgesehen, da hierfür IP-Adressen weitergegeben werden müssten. Die cloudbasierte Lösung ist im Ordner "Programme" zu finden.
 
 # Projektaufgabe
 Im Rahmen des Projektes sollen verschiedene Betriebszustände einer Waschmaschine mithilfe eines maschinellen Lern-Algorithmus festgestellt und anschließend mithilfe eines Graphical-User-Interface visualisiert werden. Für die Diagnose des aktuellen Betriebszustandes müssen die fachlichen Aspekte, wie beispielsweise die Bestimmung der benötigten Abtastfrequenz, Komprimierungsaspekte und verschiedene Kommunikationsformen genutzt werden. 
