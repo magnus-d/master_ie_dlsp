@@ -1,6 +1,9 @@
 # master_ie_dlsp
 Dies ist das Projekt im Mastermodul Datenmanagement und Leittechnik
 
+# Hinweise zu diesem GitHub-Repository
+In diesem Repository befinden sich sämtliche verwendeten Codes (sensible Informationen sind geschwärzt und durch *** ersetzt). Zusätzlich sind alle Überlegungen, hintergründige Dateien und Analysen über Jupyter-Notebooks dokumentiert. Alle Inhalte des Repository sind als Anhänge der Abgabe anzusehen
+
 # Projektaufgabe
 Im Rahmen des Projektes sollen verschiedene Betriebszustände einer Waschmaschine mithilfe eines maschinellen Lern-Algorithmus festgestellt und anschließend mithilfe eines Graphical-User-Interface visualisiert werden. Für die Diagnose des aktuellen Betriebszustandes müssen die fachlichen Aspekte, wie beispielsweise die Bestimmung der benötigten Abtastfrequenz, Komprimierungsaspekte und verschiedene Kommunikationsformen genutzt werden. 
 Die Beschleunigungsdaten sollen mithilfe eines Mikrocontrollers mit einem MPU6050 erfasst werden. Diese sollen einerseits in einer cloudbasierten Datenbank gespeichert werden, um Zugriffe außerhalb des internen Netzwerkes zu ermöglichen, und andererseits dem Graphical-User-Interface übergeben werden, um sie zu visualisieren. Im Rahmen der Visualisierung sollen die Daten mithilfe der Fast-Fourier-Transformation in ihr Frequenzspektrum umgerechnet werden. Hierdurch wird die Phasenverschiebung, die bei den Beschleunigungsdaten zu Schwierigkeiten bei der Anwendung des maschinellen Lernens führen könnte, eliminiert. Das Frequenzspektrum kann anschließend genutzt werden, um den aktuellen Programmstatus mithilfe eines maschinellen Lern-Algorithmus zu erkennen. In dem Graphic-User-Interface soll das Ergebnis des Algorithmus klar visualisiert werden.
@@ -62,6 +65,3 @@ Abbildung 3: Klassifizierungsergebnis mit drei Zuständen
 
 # Hinweise zur Verwendung der Programme
 Die Reihenfolge, in der die Programme gestartet werden, ist irrelevant. Alle Programme sind so geschrieben, dass sie auf die benötigten Daten der Schnittstellen warten, ohne in einen Fehler zu laufen. Unter Umständen kann es einige Sekunden dauern, bis das Graphical-User-Interface die Daten im Diagramm visualisiert.
-
-# Hinweise zu diesem GitHub-Repository
-In diesem Repository befinden sich sämtliche verwendeten Codes (sensible Informationen sind geschwärzt und durch *** ersetzt). Zusätzlich sind alle Überlegungen, hintergründige Dateien und Analysen über Jupyter-Notebooks dokumentiert.
