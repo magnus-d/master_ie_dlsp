@@ -24,7 +24,7 @@ def calcFFT(accel, nrsamples):
     freq = freq / nrsamples  # Normalize the Amplitude by the known sample number
     return freq
 
-client = MongoClient("localhost:27017")
+client = MongoClient("mongodb+srv://dlsp:dlsp@cluster0.6jkhj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.DLSP
 collection = db.Machine_Learning
 classification_list = []
