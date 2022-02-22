@@ -186,7 +186,7 @@ class Window(QMainWindow, gui.Ui_MainWindow):
         self.textBrowser_2.insertPlainText(text_print)
 
     def update_chart(self):
-        client = MongoClient("localhost:27017")
+        client = MongoClient("mongodb+srv://dlsp:dlsp@cluster0.6jkhj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         db = client.DLSP
         collection = db.Test
         sc, classifier = self.machine_learning_training()
