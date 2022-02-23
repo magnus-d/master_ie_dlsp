@@ -8,7 +8,6 @@ from time import sleep, localtime
 import numpy as np
 from PySide6.QtGui import Qt, QColor
 import gui_dlsp as gui
-import Icons
 from PySide6.QtWidgets import QApplication, QMainWindow
 import PySide6
 from PySide6 import QtCharts
@@ -19,6 +18,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import metrics
 from sklearn.neural_network import MLPClassifier
 from sklearn.model_selection import train_test_split
+import Icons.gui_icons
 
 ########################################################################################################################
 # Declaration of variables                                                                                             #
@@ -95,45 +95,48 @@ def gen_test_data(df):
 
 
 def external_chart():
-    frequency = 10
-    ax = []
-    ay = []
-    az = []
-    df_ext_data = ext_data_refresh(collection)
-    length_ext_vis = len(df_ext_data)
-    df_ext_data = df_ext_data[length_ext_vis - 2000:]
-    for i in df_ext_data.index:
-        ax.append(float(df_ext_data["Ax"][i]))
-        ay.append(float(df_ext_data["Ay"][i]))
-        az.append(float(df_ext_data["Az"][i]))
-    freq_ax = calcFFT(ax, length_ext_vis)
-    freq_ay = calcFFT(ay, length_ext_vis)
-    freq_az = calcFFT(az, length_ext_vis)
-    x_freq = np.linspace(0.0, frequency / 2.0, int(length_ext_vis / 2) + 1)
-    y_freq = np.linspace(0.0, frequency / 2.0, int(length_ext_vis / 2) + 1)
-    z_freq = np.linspace(0.0, frequency / 2.0, int(length_ext_vis / 2) + 1)
+    try:
+        frequency = 10
+        ax = []
+        ay = []
+        az = []
+        df_ext_data = ext_data_refresh(collection)
+        length_ext_vis = len(df_ext_data)
+        df_ext_data = df_ext_data[length_ext_vis - 2000:]
+        for i in df_ext_data.index:
+            ax.append(float(df_ext_data["Ax"][i]))
+            ay.append(float(df_ext_data["Ay"][i]))
+            az.append(float(df_ext_data["Az"][i]))
+        freq_ax = calcFFT(ax, length_ext_vis)
+        freq_ay = calcFFT(ay, length_ext_vis)
+        freq_az = calcFFT(az, length_ext_vis)
+        x_freq = np.linspace(0.0, frequency / 2.0, int(length_ext_vis / 2) + 1)
+        y_freq = np.linspace(0.0, frequency / 2.0, int(length_ext_vis / 2) + 1)
+        z_freq = np.linspace(0.0, frequency / 2.0, int(length_ext_vis / 2) + 1)
 
-    fttfig, (ax1, ax2) = plt.subplots(2, figsize=(15, 15))
+        fttfig, (ax1, ax2) = plt.subplots(2, figsize=(15, 15))
 
-    ax1.plot(df_ext_data.index, df_ext_data["Ax"], '.-', label="Accel_Ax", linewidth=0.5, ms=1, color="navy")
-    ax1.plot(df_ext_data.index, df_ext_data["Ay"], '.-', label="Accel_Ay", linewidth=0.5, ms=1, color="royalblue")
-    ax1.plot(df_ext_data.index, df_ext_data["Az"], '.-', label="Accel_Az", linewidth=0.5, ms=1, color="deepskyblue")
+        ax1.plot(df_ext_data.index, df_ext_data["Ax"], '.-', label="Accel_Ax", linewidth=0.5, ms=1, color="navy")
+        ax1.plot(df_ext_data.index, df_ext_data["Ay"], '.-', label="Accel_Ay", linewidth=0.5, ms=1, color="royalblue")
+        ax1.plot(df_ext_data.index, df_ext_data["Az"], '.-', label="Accel_Az", linewidth=0.5, ms=1, color="deepskyblue")
 
-    ax2.plot(x_freq, freq_ax, '.-', label="ax_freq", linewidth=0.5, ms=1, color="navy")
-    ax2.plot(y_freq, freq_ay, '.-', label="ay_freq", linewidth=0.5, ms=1, color="royalblue")
-    ax2.plot(z_freq, freq_az, '.-', label="az_freq", linewidth=0.5, ms=1, color="deepskyblue")
+        ax2.plot(x_freq, freq_ax, '.-', label="ax_freq", linewidth=0.5, ms=1, color="navy")
+        ax2.plot(y_freq, freq_ay, '.-', label="ay_freq", linewidth=0.5, ms=1, color="royalblue")
+        ax2.plot(z_freq, freq_az, '.-', label="az_freq", linewidth=0.5, ms=1, color="deepskyblue")
 
-    ax1.set_title("Data visualization of the last 2.000 collected data records")
-    ax1.set(xlabel="Data record [#]")
-    ax1.set(ylabel="Acceleration [m/s²]")
-    ax1.legend()
-    ax1.grid(True)
+        ax1.set_title("Data visualization of the last 2.000 collected data records")
+        ax1.set(xlabel="Data record [#]")
+        ax1.set(ylabel="Acceleration [m/s²]")
+        ax1.legend()
+        ax1.grid(True)
 
-    ax2.set(xlabel="Frequency [Hz]")
-    ax2.set(ylabel="Amplitude")
-    ax2.legend()
-    ax2.grid(True)
-    plt.show()
+        ax2.set(xlabel="Frequency [Hz]")
+        ax2.set(ylabel="Amplitude")
+        ax2.legend()
+        ax2.grid(True)
+        plt.show()
+    except ValueError:
+        print("Keine historischen Daten verfügbar")
 
 ########################################################################################################################
 # Initialization and program of the gui                                                                                #
@@ -186,9 +189,10 @@ class Window(QMainWindow, gui.Ui_MainWindow):
         self.textBrowser_2.insertPlainText(text_print)
 
     def update_chart(self):
+        #  client = MongoClient("localhost:27017")
         client = MongoClient("mongodb+srv://dlsp:dlsp@cluster0.6jkhj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
         db = client.DLSP
-        collection = db.Test
+        collection = db.Accel
         sc, classifier = self.machine_learning_training()
         while True:
             df_new_data = data_refresh(collection)
@@ -279,37 +283,29 @@ class Window(QMainWindow, gui.Ui_MainWindow):
     def machine_learning_classification(self, sc, classifier, df_new_data):
         freq_data_1, x_time, x_freq = gen_test_data(df_new_data[len(df_new_data)-102:])
         freq_data_2, x_time, x_freq = gen_test_data(df_new_data[len(df_new_data)-204:len(df_new_data)-102])
-        freq_data_3, x_time, x_freq = gen_test_data(df_new_data[len(df_new_data) - 306:len(df_new_data) - 204])
         classification_set_1 = np.delete(freq_data_1, 0)
         classification_set_2 = np.delete(freq_data_2, 0)
-        classification_set_3 = np.delete(freq_data_3, 0)
-        classification_set = np.vstack((classification_set_1, classification_set_2, classification_set_3))
+        classification_set = np.vstack((classification_set_1, classification_set_2))
         classification_data = sc.transform(classification_set)
         predicted = classifier.predict(classification_data)
         probability = classifier.predict_proba(classification_data)
         if predicted[0] == predicted[1] and predicted[0] == predicted[2]:
             predicted_state = predicted[0]
-        elif probability[0][predicted[0]-1] > probability[1][predicted[1]-1] and probability[0][predicted[0]-1] > probability[2][predicted[2]-1]:
+        elif probability[0][predicted[0]-1] > probability[1][predicted[1]-1]:
             predicted_state = predicted[0]
             self.textBrowser.setTextColor(QColor(255, 0, 0))
             self.both_dialogues("Keine eindeutige Bestimmung des aktuellen Status möglich.\nDie Wahrscheinlichkeit der vorhergesagten Klasse beträgt: " + str(probability[0][predicted[0]-1]*100)+"%")
             self.textBrowser.setTextColor(QColor(255, 255, 255))
-        elif probability[0][predicted[0]-1] < probability[1][predicted[1]-1] and probability[1][predicted[1]-1] > probability[2][predicted[2]-1]:
+        elif probability[0][predicted[0]-1] < probability[1][predicted[1]-1]:
             predicted_state = predicted[0]
             self.textBrowser.setTextColor(QColor(255, 0, 0))
             self.both_dialogues("Keine eindeutige Bestimmung des aktuellen Status möglich.\nDie Wahrscheinlichkeit der vorhergesagten Klasse beträgt: " + str(probability[1][predicted[0]-1]*100)+"%")
             self.textBrowser.setTextColor(QColor(255, 255, 255))
-        elif probability[0][predicted[0]-1] < probability[2][predicted[2]-1] and probability[1][predicted[1]-1] < probability[2][predicted[2]-1]:
-            predicted_state = predicted[0]
-            self.textBrowser.setTextColor(QColor(255, 0, 0))
-            self.both_dialogues("Keine eindeutige Bestimmung des aktuellen Status möglich.\nDie Wahrscheinlichkeit der vorhergesagten Klasse beträgt: " + str(probability[2][predicted[0]-1]*100)+"%")
-            self.textBrowser.setTextColor(QColor(255, 255, 255))
-        elif probability[0][predicted[0]-1] == probability[1][predicted[1]-1] and probability[0][predicted[0]-1] == probability[2][predicted[2]-1]:
-            predicted_state = predicted[0]
+        elif probability[0][predicted[0]-1] == probability[1][predicted[1]-1]:
+            predicted_state = 0
             self.textBrowser.setTextColor(QColor(255, 0, 0))
             self.both_dialogues(
-                "Keine eindeutige Bestimmung des aktuellen Status möglich.\nDie Wahrscheinlichkeit der vorhergesagten Klasse beträgt: " + str(
-                    probability[0][predicted[0] - 1] * 100) + "%")
+                "Keine eindeutige Bestimmung des aktuellen Status möglich")
             self.textBrowser.setTextColor(QColor(255, 255, 255))
         self.LED_states(led_state=predicted_state)
 
@@ -317,7 +313,7 @@ class Window(QMainWindow, gui.Ui_MainWindow):
 # Connection to Mongo DB                                                                                               #
 ########################################################################################################################
 
-
+#  client = MongoClient("localhost:27017")
 client = MongoClient("mongodb+srv://dlsp:dlsp@cluster0.6jkhj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 db = client.DLSP
 collection = db.Accel

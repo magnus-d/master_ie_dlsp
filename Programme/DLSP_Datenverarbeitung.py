@@ -18,6 +18,7 @@ data_list = []
 # Initializing TCP server & Mongo DB for data transmission                                                             #
 ########################################################################################################################
 client = MongoClient("mongodb+srv://dlsp:dlsp@cluster0.6jkhj.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+#  client = MongoClient("localhost:27017")
 db = client.DLSP
 
 TCP_IP = '***'
